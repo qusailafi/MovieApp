@@ -1,0 +1,33 @@
+ext {
+}
+buildscript {
+    ext.kotlin_version = KOTLIN_VERSION
+    ext.hilt_version = HILT_VERSION
+    ext.retrofitVersion = RETROFIT_VERSION
+    ext.okhttp3LogInterceptor = OKHTTP3LOGINTERCEPTOR_VERSION
+    ext.coroutinesVersion = COROUTINES_VERSION
+    ext.lifecycleVersion      = LIFECYCLE_VERSION
+
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+        maven { url 'https://plugins.gradle.org/m2/' }
+        maven { url "https://jitpack.io" }
+        maven {url "https://github.com/jitsi/jitsi-maven-repository/raw/master/releases"}
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.3'
+
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10'
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+
+
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
