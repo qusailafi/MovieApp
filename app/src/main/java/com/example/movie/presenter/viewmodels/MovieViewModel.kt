@@ -1,6 +1,4 @@
 package com.example.movie.presenter.viewmodels
-
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movie.BuildConfig
@@ -18,7 +16,6 @@ import javax.inject.Inject
 //MovieViewModel its recived data from useCase and update the data to a Ui .
 @HiltViewModel
 class MovieViewModel @Inject constructor(val moviewUseCase: MoviesUseCase) : ViewModel() {
-
     lateinit var popularityResponse: MutableStateFlow<Resource<MoviesResponse>>//
     lateinit var revenueResponse: MutableStateFlow<Resource<MoviesResponse>>
     lateinit var topRatedResponse: MutableStateFlow<Resource<MoviesResponse>>
@@ -26,19 +23,17 @@ class MovieViewModel @Inject constructor(val moviewUseCase: MoviesUseCase) : Vie
     var isLoadingTopRated: Boolean = false
     var isPopulateLoading: Boolean = false
     var isRevenueLoading: Boolean = false
-
     fun getPopularity(populatePageNUmber: Int): Flow<Resource<MoviesResponse>> {
         //will called movie use case and return a response from useCase
         HashMap<String, String>()
         quires.put(Utils.API_KEY, BuildConfig.ApiKey)
         quires.put(Utils.FILLTER_KEY, Utils.POPULARITY)
         quires.put(Utils.PAGE_KEY, populatePageNUmber.toString())
-        Log.d("types=",Utils.FILLTER_KEY.toString())
         popularityResponse = MutableStateFlow(Resource.loading(null))
         viewModelScope.launch {
             moviewUseCase(quires).collect {
                 popularityResponse.value = it
-             }
+            }
         }
 
         return popularityResponse
@@ -55,9 +50,9 @@ class MovieViewModel @Inject constructor(val moviewUseCase: MoviesUseCase) : Vie
     fun isPopulateLoad(): Boolean {
         return isPopulateLoading
     }
-fun setRevenue(isLoading:Boolean){
-    isRevenueLoading=isLoading
-}
+    fun setRevenue(isLoading:Boolean){
+        isRevenueLoading=isLoading
+    }
     fun isRevenueLoad():Boolean{
         return isRevenueLoading
     }
@@ -71,46 +66,34 @@ fun setRevenue(isLoading:Boolean){
         }
         return false
     }
-
     fun getRevenue(revenuePageNumber: Int): Flow<Resource<MoviesResponse>> {
         //will called movie use case and return a response from useCase
-
         HashMap<String, String>()
         quires = HashMap()
         quires.put(Utils.API_KEY, BuildConfig.ApiKey)
         quires.put(Utils.FILLTER_KEY, Utils.REVENUE)
         quires.put(Utils.PAGE_KEY, revenuePageNumber.toString())
-        Log.d("types=",Utils.FILLTER_KEY.toString())
-
         revenueResponse = MutableStateFlow(Resource.loading(null))
         viewModelScope.launch {
             moviewUseCase(quires).collect {
                 revenueResponse.value = it
-
             }
         }
-
         return revenueResponse
     }
-
     fun getTopRted(pageNumber: Int): Flow<Resource<MoviesResponse>> {
         //will called movie use case and return a response from useCase
-
         topRatedResponse = MutableStateFlow(Resource.loading(null))
         HashMap<String, String>()
         quires.put(Utils.PAGE_KEY, pageNumber.toString())
 
         quires.put(Utils.API_KEY, BuildConfig.ApiKey)
         quires.put(Utils.FILLTER_KEY, Utils.TOPRATED)
-        Log.d("types=",Utils.FILLTER_KEY.toString())
-
         viewModelScope.launch {
             moviewUseCase(quires).collect {
                 topRatedResponse.value = it
-
             }
         }
-
         return topRatedResponse
     }
 

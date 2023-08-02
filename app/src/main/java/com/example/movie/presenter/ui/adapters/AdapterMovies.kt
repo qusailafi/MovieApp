@@ -9,28 +9,22 @@ import com.example.movie.presenter.ui.listener.MovieListener
 //AdapterMovies used to display movies in recycler view
 class AdapterMovies(var result: ArrayList<Result>,var item: MovieListener) :
     RecyclerView.Adapter<AdapterMovies.MoviesAdapter>() {
-
-
     class MoviesAdapter(binding: AdapterMoviesBinding,item: MovieListener) :
         RecyclerView.ViewHolder(binding.root) {
         var binding = binding
         var item: MovieListener=item
-
         fun bind(result: Result) {
             binding.result = result
             binding.root.setOnClickListener {
                 item.onMoviewClick(result)
             }
              binding.executePendingBindings()//Used to bind the data to layout via data binding
-
-
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesAdapter {
         var binding: AdapterMoviesBinding =
             AdapterMoviesBinding.inflate(LayoutInflater.from(parent.context))
-
         return MoviesAdapter(binding,item)
     }
 

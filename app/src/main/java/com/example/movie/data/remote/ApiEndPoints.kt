@@ -1,5 +1,4 @@
 package com.example.movie.data.remote
-
 import com.example.movie.domain.entity.MoviesResponse
 import retrofit2.Response
 import retrofit2.http.*

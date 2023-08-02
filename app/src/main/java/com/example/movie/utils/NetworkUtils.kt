@@ -1,5 +1,4 @@
 package com.example.movie.utils
-
 import android.content.Context
 import android.net.ConnectivityManager
 import com.example.movie.application.App

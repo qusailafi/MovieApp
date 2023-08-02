@@ -1,12 +1,10 @@
 ext {
 }
 buildscript {
-    ext.kotlin_version = KOTLIN_VERSION
-    ext.hilt_version = HILT_VERSION
+     ext.hilt_version = HILT_VERSION
     ext.retrofitVersion = RETROFIT_VERSION
     ext.okhttp3LogInterceptor = OKHTTP3LOGINTERCEPTOR_VERSION
     ext.coroutinesVersion = COROUTINES_VERSION
-    ext.lifecycleVersion      = LIFECYCLE_VERSION
 
     repositories {
         google()

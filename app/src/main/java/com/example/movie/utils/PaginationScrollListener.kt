@@ -1,5 +1,4 @@
 package com.example.movie.utils
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 //PaginationScrollListener its abstract class used when we need to make pagination.
@@ -19,7 +18,6 @@ abstract  class PaginationScrollListener (private val layoutManager: LinearLayou
             }
         }
     }
-
     protected abstract fun loadMoreItems()
     abstract fun isLastPage(): Boolean
     abstract fun isLoading():Boolean

@@ -3,7 +3,6 @@ package com.example.movie.utils
 enum class Status {
     NONE,
     ERROR,
-
     SUCCESS,
     FAILURE,
     LOADING,

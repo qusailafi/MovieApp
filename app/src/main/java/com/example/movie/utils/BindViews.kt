@@ -1,5 +1,4 @@
 package com.example.movie.utils
-
 import android.view.View
 import android.widget.ImageView
 import android.widget.RatingBar
@@ -8,27 +7,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.movie.BuildConfig
 import com.example.movie.R
-
 //this file used to binding the data in views via data binding
 object BindViews {
     @JvmStatic
-
     @BindingAdapter("imageurl")
     fun loadImage(
-        view: View,
-        imageUrl: String?
-    ) {
+        view: View, imageUrl: String?) {
         val image: ImageView = view as ImageView
-
-
         Glide.with(view.context)
-            .load(BuildConfig.BASE_IMAGE_URL + "w300" + imageUrl)
+            .load(BuildConfig.BASE_IMAGE_URL + Utils.MOVIE_IMAGE_SIZE+ imageUrl)
             .apply(RequestOptions().placeholder(R.mipmap.ic_launcher))
             .into(image)
     }
-
     @JvmStatic
-
     @BindingAdapter("android:rating")
     fun setRating(view: RatingBar, rating: Double) {
         if (view.rating != rating.toFloat()) {
